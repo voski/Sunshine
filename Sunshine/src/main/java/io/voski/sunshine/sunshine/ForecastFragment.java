@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.*;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -86,6 +88,13 @@ public class ForecastFragment extends Fragment {
     // Get a reference to the ListView, and attach this adapter to it.
     ListView listView = (ListView) rootView.findViewById(R.id.list_view_forecast);
     listView.setAdapter(mForecastAdapter);
+
+    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Toast.makeText(getActivity(), mForecastAdapter.getItem(i), 5).show();
+        ;
+      }
+    });
 
     return rootView;
   }
