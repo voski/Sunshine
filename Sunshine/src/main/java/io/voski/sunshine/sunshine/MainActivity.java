@@ -1,18 +1,19 @@
 package io.voski.sunshine.sunshine;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.view.*;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
@@ -21,7 +22,7 @@ public class MainActivity extends ActionBarActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     if (savedInstanceState == null) {
-      getSupportFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
+      getSupportFragmentManager().beginTransaction().add(R.id.container, new ForecastFragment()).commit();
     }
   }
 
@@ -48,34 +49,5 @@ public class MainActivity extends ActionBarActivity {
   /**
    * A placeholder fragment containing a simple view.
    */
-  public static class PlaceholderFragment extends Fragment {
 
-    public PlaceholderFragment() {
-    }
-
-    @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-      View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-      String[] forecastData = {
-          "Today - Sunny - 88/63",
-          "Tomorrow - Sunny - 88/63",
-          "Saturday - Sunny - 88/63",
-          "Sunday - Sunny - 88/63",
-          "Monday - Sunny - 88/63",
-          "Tuesday - Sunny - 88/63",
-          "Wednesday - Sunny - 88/63"
-      };
-
-      java.util.List<String> weekForecast = new ArrayList<String>(
-          java.util.Arrays.asList(forecastData));
-
-      ArrayAdapter mForecastAdapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item_forceast, R.id.list_item_forcast_textview, weekForecast);
-
-      ListView listView = (ListView) rootView.findViewById(
-          R.id.list_view_forecast);
-      listView.setAdapter(mForecastAdapter);
-
-
-      return rootView;
-    }
-  }
 }
