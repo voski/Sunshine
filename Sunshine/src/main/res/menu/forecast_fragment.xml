@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/action_refresh"
           android:title="@string/action_refresh"
-          android:orderInCategory="100"
+          android:orderInCategory="99"
+          android:showAsAction="never"/>
+    <item android:id="@+id/action_dialog"
+          android:title="@string/action_dialog"
+          android:orderInCategory="98"
           android:showAsAction="never"/>
 </menu>

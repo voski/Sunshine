@@ -1,5 +1,7 @@
 package io.voski.sunshine.sunshine;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.*;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 import org.json.JSONArray;
@@ -25,6 +28,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Encapsulates fetching the forecast and displaying it as a {@link ListView} layout.
@@ -91,15 +97,14 @@ public class ForecastFragment extends Fragment {
 
     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(getActivity(), mForecastAdapter.getItem(i), 5).show();
-        ;
+        Intent detailIntent = new Intent(getActivity(), DetailActivity.class);
+        detailIntent.putExtra(Intent.EXTRA_TEXT, mForecastAdapter.getItem(i));
+        startActivity(detailIntent);
       }
     });
 
     return rootView;
   }
-
-
 
   public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
 
